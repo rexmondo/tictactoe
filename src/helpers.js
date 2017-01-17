@@ -1,3 +1,5 @@
+import { Players } from './constants';
+
 // identity function
 const id = x => x;
 
@@ -18,3 +20,8 @@ export const makeCreators = actions => Object.keys(actions)
   .reduce((acc, type) => Object.assign(acc, {
     [type]: payload => ({ type, payload })
   }), {});
+
+/*
+ * Determines whether a square is not yet taken
+ */
+export const isValidMove = cellValue  => (cellValue === Players.UNSET);

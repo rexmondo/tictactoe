@@ -8,9 +8,7 @@ import {
   actions as BoardActions,
 } from '../actions/board';
 
-const player = 'x';
-
-const Board = ({ board, updateBoard }) => (
+const Board = ({ board, updateBoard, player }) => (
   <div className="board">
     {
       board.flatMap((row, x) => row.map((currentValue, y) => (
@@ -27,6 +25,7 @@ const Board = ({ board, updateBoard }) => (
 Board.propTypes = {
   board: P.instanceOf(List).isRequired,
   updateBoard: P.func.isRequired,
+  player: P.string,
 }
 
 export default connect(
