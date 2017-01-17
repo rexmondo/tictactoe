@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { List } from 'immutable';
 
 import Cell from './Cell';
-import { 
-  creators as BoardActionCreators,
-  actions as BoardActions,
-} from '../actions/board';
+import { creators as BoardActionCreators } from '../actions/board';
 
 const Board = ({ board, updateBoard, player }) => (
   <div className="board">
@@ -32,7 +29,7 @@ export default connect(
   ({ board }) => ({ board }),
   dispatch => ({
     updateBoard: (values) => () => (
-      dispatch(BoardActionCreators[BoardActions.SET_SQUARE](values))
+      dispatch(BoardActionCreators.SET_SQUARE(values))
     )
   })
 )(Board);
