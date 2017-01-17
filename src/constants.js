@@ -3,3 +3,5 @@ export const Players = {
   O: 'O',
   UNSET: null,
 };
+
+export const TIE = 'Tie game';
