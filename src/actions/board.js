@@ -1,15 +1,5 @@
 import { fromJS } from 'immutable';
-
-const id = x => x;
-
-const makeReducer = (initialState, strategy) => (state = initialState, action) => (
-  (strategy[action.type] || id)(state, action)
-);
-
-const makeCreators = actions => Object.keys(actions)
-  .reduce((acc, type) => Object.assign(acc, {
-    [type]: payload => ({ type, payload })
-  }), {});
+import { makeReducer, makeCreators } from '../helpers';
 
 const initialState = fromJS([
   [null, null, null],

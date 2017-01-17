@@ -1,51 +1,39 @@
-import React, { Component } from 'react';
+import React, { PropTypes as P } from 'react';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
+import Cell from './Cell';
 import { 
   creators as BoardActionCreators,
   actions as BoardActions,
 } from '../actions/board';
 
-class Cell extends Component {
-  render() {
-    const { updateCell, value }  = this.props;
-    return (
-      <div 
-        className="cell"
-        onClick={updateCell}
-      >
-        {value}
-      </div>
-    );
-  }
-}
-
 const player = 'x';
 
-class Board extends Component {
-  render() {
-    const { board, updateBoard } = this.props;
-    return (
-      <div className="board">
-        {
-          board.flatMap((row, x) => row.map((currentValue, y) => (
-            <Cell 
-              key={`cell: [${x},${y}]`}
-              updateCell={updateBoard({ x, y, player })} 
-              value={currentValue} 
-            />
-          )))
-        }
-      </div>
-    );
-  }
+const Board = ({ board, updateBoard }) => (
+  <div className="board">
+    {
+      board.flatMap((row, x) => row.map((currentValue, y) => (
+        <Cell 
+          key={`cell: [${x},${y}]`}
+          updateCell={updateBoard({ x, y, player })} 
+          value={currentValue} 
+        />
+      )))
+    }
+  </div>
+);
+
+Board.propTypes = {
+  board: P.instanceOf(List).isRequired,
+  updateBoard: P.func.isRequired,
 }
 
 export default connect(
   ({ board }) => ({ board }),
   dispatch => ({
-    updateBoard: (values) => () => {
-      return dispatch(BoardActionCreators[BoardActions.SET_SQUARE](values))
-    }
+    updateBoard: (values) => () => (
+      dispatch(BoardActionCreators[BoardActions.SET_SQUARE](values))
+    )
   })
 )(Board);
