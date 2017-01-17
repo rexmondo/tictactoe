@@ -17,7 +17,7 @@ const App = ({ player, winner, restart }) => (
     </div>
     <div className="board-wrapper"> 
       { winner &&  <WinnerOverlay winner={winner} restart={restart} /> }
-      <Board player={player} />;
+      <Board player={player} />
     </div>
   </div>
 )
