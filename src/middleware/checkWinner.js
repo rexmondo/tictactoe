@@ -29,11 +29,13 @@ export default store => next => action => {
       .some(line => line.every(cell => (board.getIn(cell) === player)));
     if (playerWins) {
       store.dispatch(GameActionCreators.SET_WINNER({ winner: player }));
+      return;
     }
 
     const isTied = board.every(row => row.every(cell => (cell !== Players.UNSET)));
     if (isTied) {
       store.dispatch(GameActionCreators.SET_WINNER({ winner: TIE }));
+      return;
     }
   }
 }

@@ -1,10 +1,11 @@
 import { fromJS } from 'immutable';
 import { makeReducer, makeCreators } from '../helpers';
+import { Players } from '../constants';
 
 const initialState = fromJS([
-  [null, null, null],
-  [null, null, null],
-  [null, null, null]
+  [Players.UNSET, Players.UNSET, Players.UNSET],
+  [Players.UNSET, Players.UNSET, Players.UNSET],
+  [Players.UNSET, Players.UNSET, Players.UNSET]
 ]); 
 
 export const actions = {
